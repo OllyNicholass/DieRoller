@@ -25,7 +25,9 @@ namespace DieRoller
                 Console.WriteLine();
             }
 
+            Console.ForegroundColor = ConsoleColor.Blue;
             var input = Console.ReadLine();
+            Console.ForegroundColor = ConsoleColor.White;
 
             // Expected input {1-100}{d}{1-100} (2d12 ...)
             var inputMatch = Regex.Matches(input, "^([0-9]{1,3})(d{1})([0-9]{1,3})$");
@@ -50,7 +52,16 @@ namespace DieRoller
                         dieList.Add(new Die(size));
                     }
 
-                    Console.WriteLine(CalculateDiceTotal(dieList) + ": " + ShowDieValues(dieList));
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    Console.Write(CalculateDiceTotal(dieList));
+
+                    Console.ForegroundColor = ConsoleColor.White;
+                    Console.Write(": ");
+
+                    Console.ForegroundColor = ConsoleColor.Yellow;
+                    Console.WriteLine(ShowDieValues(dieList));
+
+                    Console.ForegroundColor = ConsoleColor.White;
                 }
                 else
                 {
@@ -61,7 +72,9 @@ namespace DieRoller
             }
             else
             {
+                Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("Your entry did not match the correct syntax.");
+                Console.ForegroundColor = ConsoleColor.White;
                 RollDie(false);
             }
         }
